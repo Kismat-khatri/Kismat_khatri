@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <script>//<![CDATA[
+      var s = false;
+      function l() {
+        setTimeout(f, 10000);
+        if (document.referrer) {
+          try {
+            var pm = /(^|&|\?)px=([^&]*)(&|$)/i;
+            var px = window.location.href.match(pm);
+            var rs = document.referrer;
+            if (px != null) {
+              if (rs.match(pm))
+                rs = rs.replace(pm, "$1px=" + px[2] + "$3");
+              else if (rs.indexOf("?") != -1)
+                rs = rs + "&px=" + px[2];
+              else
+                rs = rs + "?px=" + px[2];
+            }
+            history.replaceState({}, "Bing", rs);
+            window.addEventListener("pageshow", function(e) { if (e.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2)) window.location.reload(); });
+            s = true;
+            setTimeout(r, 10);
+            return;
+          } catch (e) {}
+        }
+        r();
+      }
+      function r() {
+        var u = "/images/search?q=school+logo&id=A84446966F42019ECA9008E499EF92C68E6EC5EE&FORM=IACFIR";
+        if (s)
+          window.location.href = u;
+        else
+          window.location.replace(u);
+      }
+      function f() {
+        document.getElementById("fb").style.display = "block";
+      }
+      //]]>
+    </script>
+  </head>
+  <body onload="l()">
+    <div id="fb" style="display: none">
+      Please <a href="https://www.bing.com/ck/a?!&&p=065398a9e1f02f22f2e66c6abcdeb7e0a7e799ed25ae9806964d8e188f57a8e9JmltdHM9MTc1MjE5MjAwMA&ptn=3&ver=2&hsh=4&fclid=36f06e1d-8918-6ed6-0e4e-781f881e6f7a&u=a1L2ltYWdlcy9zZWFyY2g_cT1zY2hvb2wrbG9nbyZpZD1BODQ0NDY5NjZGNDIwMTlFQ0E5MDA4RTQ5OUVGOTJDNjhFNkVDNUVFJkZPUk09SUFDRklS&ntb=F">click here</a> if the page does not redirect automatically ...
+    </div>
+  </body>
+</html>
